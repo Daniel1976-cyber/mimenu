@@ -114,6 +114,10 @@
         <svg viewBox="0 0 24 24"><path d="M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"/></svg>
         Menu Publico
       </a>
+      <a href="#" onclick="logout()" style="margin-top:auto;color:#ef4444">
+        <svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+        Cerrar Sesion
+      </a>
     </nav>
   </div>
 
@@ -236,6 +240,10 @@
   <div class="toast" id="toast"></div>
 
   <script>
+    if (sessionStorage.getItem('adminAuth') !== 'true') {
+      window.location.href = 'login.html';
+    }
+
     const API = 'http://localhost:3000/api';
     let allBeverages = [];
     let currentPage = 1;
@@ -416,6 +424,11 @@
     }
 
     loadStats(); loadCategories(); loadBeverages();
+
+    function logout() {
+      sessionStorage.removeItem('adminAuth');
+      window.location.href = 'login.html';
+    }
   </script>
 </body>
 </html>
