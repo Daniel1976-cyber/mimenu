@@ -105,6 +105,9 @@
 <body>
   <div class="sidebar">
     <div class="logo" id="locName">Hotel Bar</div>
+    <div style="text-align:center;padding:0 16px 16px">
+      <span id="roleBadge" class="badge" style="font-size:.75rem"></span>
+    </div>
     <nav>
       <a href="#" class="active">
         <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
@@ -124,7 +127,7 @@
   <div class="main">
     <div class="header">
       <h1>Inventario de Bebidas</h1>
-      <button class="btn-add" onclick="openAddModal()">+ Agregar Bebida</button>
+      <button class="btn-add" id="btnAdd" onclick="openAddModal()">+ Agregar Bebida</button>
     </div>
 
     <div class="stats" id="stats">
@@ -246,12 +249,23 @@
     }
 
     const LOC = getCurrentLocation();
+    const ROLE = getRole();
+    const isFullAccess = ROLE === 'maitre';
     const API_URL = '/api';
     let allBeverages = [];
     let currentPage = 1;
     const perPage = 25;
 
     document.getElementById('locName').textContent = LOC.name;
+    const roleBadge = document.getElementById('roleBadge');
+    if (ROLE && LOC.roles[ROLE]) {
+      roleBadge.textContent = LOC.roles[ROLE].label;
+      roleBadge.className = 'badge ' + (ROLE === 'maitre' ? 'active' : 'inactive');
+    }
+
+    if (!isFullAccess) {
+      document.getElementById('btnAdd').style.display = 'none';
+    }
 
     async function checkServer() {
       try {
@@ -319,18 +333,21 @@
           <td><span class="badge active">${b.category}</span></td>
           <td>${b.unit}</td>
           <td>${b.priceCUP ? b.priceCUP.toLocaleString('es-CU') + ' $' : '-'}</td>
-          <td><input class="stock-input" type="number" value="${b.stock}" min="0" onchange="updateStock(${b.id}, this.value)"></td>
+          <td>${isFullAccess
+            ? `<input class="stock-input" type="number" value="${b.stock}" min="0" onchange="updateStock(${b.id}, this.value)">`
+            : b.stock}</td>
           <td><span class="badge ${b.active ? 'active' : 'inactive'}">${b.active ? 'Activo' : 'Inactivo'}</span></td>
           <td class="actions">
             <button class="btn-icon toggle" title="Activar/Desactivar" onclick="toggleBeverage(${b.id})">
               <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
             </button>
+            ${isFullAccess ? `
             <button class="btn-icon edit" title="Editar" onclick="editBeverage(${b.id})">
               <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
             </button>
             <button class="btn-icon delete" title="Eliminar" onclick="deleteBeverage(${b.id}, '${b.name.replace(/'/g, "\\'")}')">
               <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
-            </button>
+            </button>` : ''}
           </td>
         </tr>
       `).join('');
@@ -463,7 +480,7 @@
     init();
 
     function logout() {
-      sessionStorage.removeItem('adminAuth');
+      clearSession();
       window.location.href = 'login.html';
     }
   </script>

@@ -22,6 +22,9 @@
     .btn-login:hover { background: #f59e0b; }
     .error { background: #450a0a; border: 1px solid #7f1d1d; color: #fca5a5; padding: 12px 16px; border-radius: 10px; font-size: .85rem; margin-bottom: 20px; display: none; }
     .error.show { display: block; }
+    .role-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: .75rem; font-weight: 600; margin-top: 12px; }
+    .role-badge.maitre { background: #052e16; color: #22c55e; }
+    .role-badge.capitan { background: #1e3a5f; color: #60a5fa; }
     .links { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
     .links a { color: #78716c; text-decoration: none; font-size: .85rem; transition: .2s; }
     .links a:hover { color: #fbbf24; }
@@ -31,7 +34,7 @@
   <div class="login-container">
     <div class="login-card">
       <div class="icon">🔒</div>
-      <h1 id="pageTitle">Acceso Admin</h1>
+      <h1>Acceso Admin</h1>
       <p class="subtitle" id="pageSubtitle">Seleccione sucursal e ingrese su contrasena</p>
       <div class="error" id="errorMsg">Contrasena incorrecta. Intente de nuevo.</div>
       <div class="form-group">
@@ -45,6 +48,7 @@
         <label>Contrasena</label>
         <input type="password" id="passwordInput" placeholder="Ingrese su contrasena" autofocus>
       </div>
+      <div id="roleInfo" style="text-align:center;min-height:24px"></div>
       <button class="btn-login" onclick="login()">Entrar</button>
       <div class="links">
         <a href="menu.html">&larr; Menu</a>
@@ -57,25 +61,42 @@
   <script>
     const savedLoc = localStorage.getItem('location') || 'cubacuba';
     document.getElementById('locationSelect').value = savedLoc;
+    showRoleHint();
 
     function onLocationChange() {
       const loc = document.getElementById('locationSelect').value;
       localStorage.setItem('location', loc);
+      showRoleHint();
+    }
+
+    function showRoleHint() {
+      const locId = document.getElementById('locationSelect').value;
+      const loc = LOCATIONS[locId];
+      const info = document.getElementById('roleInfo');
+      const roles = Object.entries(loc.roles);
+      info.innerHTML = roles.map(([key, r]) =>
+        `<span class="role-badge ${key}">${r.label}: Acceso ${r.fullAccess ? 'Completo' : 'Limitado'}</span>`
+      ).join(' ');
     }
 
     function login() {
       const locId = document.getElementById('locationSelect').value;
       const loc = LOCATIONS[locId];
       const password = document.getElementById('passwordInput').value;
-      if (password === loc.password) {
-        setLocation(locId);
-        sessionStorage.setItem('adminAuth', 'true');
-        window.location.href = 'admin.html';
-      } else {
-        document.getElementById('errorMsg').classList.add('show');
-        document.getElementById('passwordInput').value = '';
-        document.getElementById('passwordInput').focus();
+
+      for (const [roleKey, roleData] of Object.entries(loc.roles)) {
+        if (password === roleData.password) {
+          setLocation(locId);
+          sessionStorage.setItem('adminAuth', 'true');
+          setRole(roleKey);
+          window.location.href = 'admin.html';
+          return;
+        }
       }
+
+      document.getElementById('errorMsg').classList.add('show');
+      document.getElementById('passwordInput').value = '';
+      document.getElementById('passwordInput').focus();
     }
 
     document.getElementById('passwordInput').addEventListener('keypress', (e) => {

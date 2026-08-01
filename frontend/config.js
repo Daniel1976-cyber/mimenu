@@ -3,15 +3,21 @@ const LOCATIONS = {
     id: 'cubacuba',
     name: 'Snack Bar Cuba Cuba',
     subtitle: 'Sabores autenticos de Cuba',
-    password: 'hotel2026',
-    apiBase: '/api'
+    apiBase: '/api',
+    roles: {
+      maitre: { password: 'hotel2026', label: 'Maitre', fullAccess: true },
+      capitan: { password: 'capitan2026', label: 'Capitan', fullAccess: false }
+    }
   },
   ranchon: {
     id: 'ranchon',
     name: 'Bar Ranchon Santa Clara',
     subtitle: 'El mejor ambiente y bebidas',
-    password: 'ranchon2026',
-    apiBase: '/api'
+    apiBase: '/api',
+    roles: {
+      maitre: { password: 'ranchon2026', label: 'Maitre', fullAccess: true },
+      capitan: { password: 'capitan2026', label: 'Capitan', fullAccess: false }
+    }
   }
 };
 
@@ -26,4 +32,21 @@ function getCurrentLocation() {
 
 function setLocation(locId) {
   localStorage.setItem('location', locId);
+}
+
+function getRole() {
+  return sessionStorage.getItem('adminRole') || null;
+}
+
+function isMaitre() {
+  return getRole() === 'maitre';
+}
+
+function setRole(role) {
+  sessionStorage.setItem('adminRole', role);
+}
+
+function clearSession() {
+  sessionStorage.removeItem('adminAuth');
+  sessionStorage.removeItem('adminRole');
 }
