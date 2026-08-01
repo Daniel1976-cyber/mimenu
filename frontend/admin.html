@@ -244,46 +244,58 @@
       window.location.href = 'login.html';
     }
 
-    const API = 'http://localhost:3000/api';
+    const API_URL = window.location.origin + '/api';
     let allBeverages = [];
     let currentPage = 1;
     const perPage = 25;
 
+    async function checkServer() {
+      try {
+        const r = await fetch(API_URL + '/stats');
+        if (!r.ok) throw new Error();
+        return true;
+      } catch (e) {
+        document.getElementById('tableBody').innerHTML = '<tr><td colspan="8" class="loading" style="color:#ef4444">Error: No se pudo conectar al servidor. Ejecuta "cd api && node server.js" en la terminal.</td></tr>';
+        return false;
+      }
+    }
+
     async function loadStats() {
       try {
-        const r = await fetch(`${API}/stats`);
+        const r = await fetch(`${API_URL}/stats`);
         const s = await r.json();
         document.getElementById('statTotal').textContent = s.total;
         document.getElementById('statActive').textContent = s.active;
         document.getElementById('statInactive').textContent = s.inactive;
         document.getElementById('statOut').textContent = s.outOfStock;
-      } catch (e) { console.error(e); }
+      } catch (e) { console.error('Stats error:', e); }
     }
 
     async function loadCategories() {
       try {
-        const r = await fetch(`${API}/categories`);
+        const r = await fetch(`${API_URL}/categories`);
         const cats = await r.json();
         const sel = document.getElementById('filterCategory');
         cats.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; sel.appendChild(o); });
-      } catch (e) { console.error(e); }
+      } catch (e) { console.error('Categories error:', e); }
     }
 
     async function loadBeverages() {
       const search = document.getElementById('searchInput').value;
       const category = document.getElementById('filterCategory').value;
       const active = document.getElementById('filterStatus').value;
-      let url = `${API}/beverages?`;
+      let url = `${API_URL}/beverages?`;
       if (search) url += `search=${encodeURIComponent(search)}&`;
       if (category) url += `category=${encodeURIComponent(category)}&`;
       if (active) url += `active=${active}&`;
       try {
         const r = await fetch(url);
+        if (!r.ok) throw new Error();
         allBeverages = await r.json();
         currentPage = 1;
         renderTable();
       } catch (e) {
-        document.getElementById('tableBody').innerHTML = '<tr><td colspan="8" class="loading">Error al cargar datos</td></tr>';
+        document.getElementById('tableBody').innerHTML = '<tr><td colspan="8" class="loading" style="color:#ef4444">Error al cargar datos. Verifica que el servidor este corriendo.</td></tr>';
       }
     }
 
@@ -333,31 +345,44 @@
 
     async function toggleBeverage(id) {
       try {
-        const r = await fetch(`${API}/beverages/${id}/toggle`, { method: 'PATCH' });
+        const r = await fetch(`${API_URL}/beverages/${id}/toggle`, { method: 'PATCH' });
+        if (!r.ok) throw new Error();
         const b = await r.json();
         showToast(b.active ? 'Bebida activada' : 'Bebida desactivada');
-        loadStats(); loadBeverages();
-      } catch (e) { showToast('Error al cambiar estado', true); }
+        await loadStats();
+        await loadBeverages();
+      } catch (e) {
+        showToast('Error al cambiar estado. Verifica el servidor.', true);
+        console.error('Toggle error:', e);
+      }
     }
 
     async function updateStock(id, value) {
       try {
-        await fetch(`${API}/beverages/${id}/stock`, {
+        const r = await fetch(`${API_URL}/beverages/${id}/stock`, {
           method: 'PATCH', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ stock: parseInt(value) || 0 })
         });
+        if (!r.ok) throw new Error();
         showToast('Stock actualizado');
         loadStats();
-      } catch (e) { showToast('Error al actualizar stock', true); }
+      } catch (e) {
+        showToast('Error al actualizar stock', true);
+        console.error('Stock error:', e);
+      }
     }
 
     async function deleteBeverage(id, name) {
       if (!confirm(`Eliminar "${name}"?`)) return;
       try {
-        await fetch(`${API}/beverages/${id}`, { method: 'DELETE' });
+        const r = await fetch(`${API_URL}/beverages/${id}`, { method: 'DELETE' });
+        if (!r.ok) throw new Error();
         showToast('Bebida eliminada');
         loadStats(); loadBeverages();
-      } catch (e) { showToast('Error al eliminar', true); }
+      } catch (e) {
+        showToast('Error al eliminar', true);
+        console.error('Delete error:', e);
+      }
     }
 
     function openAddModal() {
@@ -365,7 +390,7 @@
       document.getElementById('editId').value = '';
       document.getElementById('formName').value = '';
       document.getElementById('formCategory').value = 'Agua';
-      document.getElementById('formUnit').value = 'u';
+      document.getElementById('formUnit').value = '45 ml';
       document.getElementById('formPriceCUP').value = '';
       document.getElementById('formPriceUSD').value = '';
       document.getElementById('formStock').value = '0';
@@ -408,7 +433,7 @@
       if (!data.name) { showToast('El nombre es obligatorio', true); return; }
       try {
         const method = id ? 'PUT' : 'POST';
-        const url = id ? `${API}/beverages/${id}` : `${API}/beverages`;
+        const url = id ? `${API_URL}/beverages/${id}` : `${API_URL}/beverages`;
         await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
         showToast(id ? 'Bebida actualizada' : 'Bebida agregada');
         closeModal();
@@ -423,7 +448,15 @@
       setTimeout(() => t.className = 'toast', 2500);
     }
 
-    loadStats(); loadCategories(); loadBeverages();
+    async function init() {
+      const ok = await checkServer();
+      if (ok) {
+        loadStats();
+        loadCategories();
+        loadBeverages();
+      }
+    }
+    init();
 
     function logout() {
       sessionStorage.removeItem('adminAuth');

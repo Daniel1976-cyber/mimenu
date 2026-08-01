@@ -10,6 +10,9 @@
     body { font-family: 'Inter', sans-serif; background: #0c0a09; color: #fafaf9; min-height: 100vh; }
 
     .hero { text-align: center; padding: 80px 20px 40px; background: linear-gradient(180deg, #1c1917 0%, #0c0a09 100%); border-bottom: 1px solid #292524; }
+    .hero .back-btn { position: absolute; top: 20px; left: 20px; color: #78716c; text-decoration: none; font-size: .9rem; transition: .2s; }
+    .hero .back-btn:hover { color: #fbbf24; }
+    .hero { position: relative; }
     .hero .icon { font-size: 3rem; margin-bottom: 16px; }
     .hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: #fbbf24; margin-bottom: 8px; letter-spacing: .02em; }
     .hero p { color: #a8a29e; font-size: 1.1rem; font-weight: 300; }
@@ -61,6 +64,7 @@
 </head>
 <body>
   <div class="hero">
+    <a href="index.html" class="back-btn">&larr; Volver</a>
     <div class="icon">🍸</div>
     <h1>Menu de Bebidas</h1>
     <p>Descubra nuestra seleccion de bebidas premium</p>
@@ -81,7 +85,7 @@
   </footer>
 
   <script>
-    const API = 'http://localhost:3000/api';
+    const API = window.location.origin + '/api';
     let menuData = { beverages: [], categories: [] };
     let activeCategory = '';
 
