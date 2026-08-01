@@ -66,8 +66,8 @@
   <div class="hero">
     <a href="index.html" class="back-btn">&larr; Volver</a>
     <div class="icon">🍸</div>
-    <h1>Menu de Bebidas</h1>
-    <p>Descubra nuestra seleccion de bebidas premium</p>
+    <h1 id="menuTitle">Menu de Bebidas</h1>
+    <p id="menuSubtitle">Descubra nuestra seleccion de bebidas premium</p>
   </div>
 
   <div class="container">
@@ -81,13 +81,19 @@
   </div>
 
   <footer>
-    <p>Hotel Bar &copy; 2026 &mdash; Precios en CUP</p>
+    <p id="footerText">Hotel Bar &copy; 2026 &mdash; Precios en CUP</p>
   </footer>
 
+  <script src="config.js"></script>
   <script>
-    const API = window.location.origin + '/api';
+    const LOC = getCurrentLocation();
+    const API = '/api';
     let menuData = { beverages: [], categories: [] };
     let activeCategory = '';
+
+    document.getElementById('menuTitle').textContent = LOC.name;
+    document.getElementById('menuSubtitle').textContent = LOC.subtitle;
+    document.getElementById('footerText').innerHTML = LOC.name + ' &copy; 2026 &mdash; Precios en CUP';
 
     async function loadMenu() {
       try {
