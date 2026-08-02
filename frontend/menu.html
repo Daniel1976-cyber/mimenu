@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menu de Bebidas - Hotel Bar</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#fbbf24">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -161,6 +163,10 @@
 
     document.getElementById('searchInput').addEventListener('input', renderMenu);
     loadMenu();
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+    }
   </script>
 </body>
 </html>

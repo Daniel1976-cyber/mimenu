@@ -127,7 +127,10 @@
   <div class="main">
     <div class="header">
       <h1>Inventario de Bebidas</h1>
-      <button class="btn-add" id="btnAdd" onclick="openAddModal()">+ Agregar Bebida</button>
+      <div style="display:flex;gap:10px;">
+        <button class="btn-add" style="background:#334155;color:#e2e8f0;" onclick="window.open('qr.html?loc='+getCurrentLocation().id,'_blank')"> QR</button>
+        <button class="btn-add" id="btnAdd" onclick="openAddModal()">+ Agregar Bebida</button>
+      </div>
     </div>
 
     <div class="stats" id="stats">
