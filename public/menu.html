@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu de Bebidas - Hotel Bar</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#fbbf24">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #0c0a09; color: #fafaf9; min-height: 100vh; }
+
+    .hero { text-align: center; padding: 80px 20px 40px; background: linear-gradient(180deg, #1c1917 0%, #0c0a09 100%); border-bottom: 1px solid #292524; }
+    .hero .back-btn { position: absolute; top: 20px; left: 20px; color: #78716c; text-decoration: none; font-size: .9rem; transition: .2s; }
+    .hero .back-btn:hover { color: #fbbf24; }
+    .hero { position: relative; }
+    .hero .icon { font-size: 3rem; margin-bottom: 16px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: #fbbf24; margin-bottom: 8px; letter-spacing: .02em; }
+    .hero p { color: #a8a29e; font-size: 1.1rem; font-weight: 300; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+
+    .category-nav { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 48px; padding: 0 20px; }
+    .cat-btn { padding: 10px 22px; background: #1c1917; border: 1px solid #292524; border-radius: 30px; color: #a8a29e; cursor: pointer; font-family: 'Inter', sans-serif; font-size: .9rem; transition: .25s; }
+    .cat-btn:hover { border-color: #fbbf24; color: #fbbf24; }
+    .cat-btn.active { background: #fbbf24; color: #0c0a09; border-color: #fbbf24; font-weight: 600; }
+
+    .category-section { margin-bottom: 56px; }
+    .category-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fbbf24; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #292524; display: flex; align-items: center; gap: 12px; }
+    .category-title .count { font-family: 'Inter', sans-serif; font-size: .8rem; background: #292524; padding: 4px 12px; border-radius: 20px; color: #a8a29e; }
+
+    .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+    .item-card { background: #1c1917; border: 1px solid #292524; border-radius: 16px; padding: 20px 24px; transition: .3s; position: relative; overflow: hidden; }
+    .item-card:hover { border-color: #44403c; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.3); }
+    .item-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #fbbf24, #f59e0b); opacity: 0; transition: .3s; }
+    .item-card:hover::before { opacity: 1; }
+
+    .item-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 8px; }
+    .item-name { font-size: 1rem; font-weight: 500; color: #fafaf9; line-height: 1.4; flex: 1; }
+    .item-price { font-size: 1.1rem; font-weight: 700; color: #fbbf24; white-space: nowrap; }
+    .item-price .currency { font-size: .75rem; font-weight: 400; color: #a8a29e; display: block; text-align: right; }
+    .item-meta { display: flex; gap: 12px; align-items: center; }
+    .item-unit { font-size: .8rem; color: #78716c; background: #292524; padding: 3px 10px; border-radius: 12px; }
+    .item-stock { font-size: .75rem; color: #78716c; }
+
+    .empty-state { text-align: center; padding: 80px 20px; color: #78716c; }
+    .empty-state .icon { font-size: 4rem; margin-bottom: 16px; }
+    .empty-state h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #a8a29e; margin-bottom: 8px; }
+
+    .search-bar { max-width: 500px; margin: 0 auto 40px; position: relative; }
+    .search-bar input { width: 100%; padding: 14px 20px 14px 48px; background: #1c1917; border: 1px solid #292524; border-radius: 14px; color: #fafaf9; font-size: 1rem; font-family: 'Inter', sans-serif; }
+    .search-bar input:focus { outline: none; border-color: #fbbf24; }
+    .search-bar input::placeholder { color: #57534e; }
+    .search-bar svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; fill: #57534e; }
+
+    footer { text-align: center; padding: 40px 20px; border-top: 1px solid #292524; color: #57534e; font-size: .85rem; }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2rem; }
+      .items-grid { grid-template-columns: 1fr; }
+      .category-nav { gap: 6px; }
+      .cat-btn { padding: 8px 16px; font-size: .8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <a href="index.html" class="back-btn">&larr; Volver</a>
+    <div class="icon">🍸</div>
+    <h1 id="menuTitle">Menu de Bebidas</h1>
+    <p id="menuSubtitle">Descubra nuestra seleccion de bebidas premium</p>
+  </div>
+
+  <div class="container">
+    <div class="search-bar">
+      <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+      <input type="text" id="searchInput" placeholder="Buscar bebida...">
+    </div>
+
+    <div class="category-nav" id="categoryNav"></div>
+    <div id="menuContent"><div class="empty-state"><div class="icon">⏳</div><h3>Cargando menu...</h3></div></div>
+  </div>
+
+  <footer>
+    <p id="footerText">Hotel Bar &copy; 2026 &mdash; Precios en CUP</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script>
+    const LOC = getCurrentLocation();
+    const API = '/api';
+    let menuData = { beverages: [], categories: [] };
+    let activeCategory = '';
+
+    document.getElementById('menuTitle').textContent = LOC.name;
+    document.getElementById('menuSubtitle').textContent = LOC.subtitle;
+    document.getElementById('footerText').innerHTML = LOC.name + ' &copy; 2026 &mdash; Precios en CUP';
+
+    async function loadMenu() {
+      try {
+        const r = await fetch(`${API}/beverages/menu`);
+        menuData = await r.json();
+        renderCategoryNav();
+        renderMenu();
+      } catch (e) {
+        document.getElementById('menuContent').innerHTML = '<div class="empty-state"><div class="icon">⚠️</div><h3>Error al cargar el menu</h3><p>Asegurese de que el servidor este activo.</p></div>';
+      }
+    }
+
+    function renderCategoryNav() {
+      const nav = document.getElementById('categoryNav');
+      nav.innerHTML = `<button class="cat-btn active" onclick="filterCategory('')">Todos</button>` +
+        menuData.categories.map(c => `<button class="cat-btn" onclick="filterCategory('${c}')">${c}</button>`).join('');
+    }
+
+    function filterCategory(cat) {
+      activeCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(b => {
+        b.classList.toggle('active', (cat === '' && b.textContent === 'Todos') || b.textContent === cat);
+      });
+      renderMenu();
+    }
+
+    function renderMenu() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      let items = menuData.beverages;
+      if (activeCategory) items = items.filter(b => b.category === activeCategory);
+      if (search) items = items.filter(b => b.name.toLowerCase().includes(search));
+
+      if (items.length === 0) {
+        document.getElementById('menuContent').innerHTML = '<div class="empty-state"><div class="icon">🔍</div><h3>No se encontraron bebidas</h3></div>';
+        return;
+      }
+
+      const grouped = {};
+      items.forEach(b => {
+        if (!grouped[b.category]) grouped[b.category] = [];
+        grouped[b.category].push(b);
+      });
+
+      const sortedCats = Object.keys(grouped).sort();
+      document.getElementById('menuContent').innerHTML = sortedCats.map(cat => `
+        <div class="category-section">
+          <div class="category-title">${cat} <span class="count">${grouped[cat].length}</span></div>
+          <div class="items-grid">
+            ${grouped[cat].map(b => `
+              <div class="item-card">
+                <div class="item-header">
+                  <div class="item-name">${b.name}</div>
+                  <div class="item-price">${b.priceCUP ? b.priceCUP.toLocaleString('es-CU') : '-'} <span class="currency">CUP</span></div>
+                </div>
+                <div class="item-meta">
+                  <span class="item-unit">${b.unit === '45 ml' ? 'Trago' : b.unit}</span>
+                  <span class="item-stock">${b.stock > 10 ? 'Disponible' : b.stock > 0 ? `Últimas ${b.stock} unidades` : 'Agotado'}</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById('searchInput').addEventListener('input', renderMenu);
+    loadMenu();
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+    }
+  </script>
+</body>
+</html>

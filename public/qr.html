@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codigo QR - Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+    h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+    .subtitle { color: #64748b; margin-bottom: 40px; }
+    .qr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; max-width: 900px; width: 100%; }
+    .qr-card { background: #1e293b; border: 1px solid #334155; border-radius: 20px; padding: 32px; text-align: center; }
+    .qr-card h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 4px; }
+    .qr-card .loc-id { color: #64748b; font-size: .85rem; margin-bottom: 24px; }
+    .qr-card canvas { border-radius: 12px; margin-bottom: 20px; }
+    .qr-card .url-preview { background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 10px 14px; font-size: .75rem; color: #94a3b8; word-break: break-all; margin-bottom: 20px; }
+    .btn-download { padding: 10px 24px; background: #f59e0b; color: #0f172a; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: .9rem; transition: .2s; }
+    .btn-download:hover { background: #d97706; }
+    .back-link { margin-top: 40px; color: #64748b; text-decoration: none; font-size: .9rem; transition: .2s; }
+    .back-link:hover { color: #f59e0b; }
+  </style>
+</head>
+<body>
+  <h1>Codigos QR del Menu</h1>
+  <p class="subtitle">Escanea para acceder directamente al menu</p>
+
+  <div class="qr-grid" id="qrGrid"></div>
+
+  <a href="index.html" class="back-link">&larr; Volver al inicio</a>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+  <script src="config.js"></script>
+  <script>
+    const grid = document.getElementById('qrGrid');
+    const baseUrl = window.location.origin;
+
+    Object.keys(LOCATIONS).forEach(key => {
+      const loc = LOCATIONS[key];
+      const menuUrl = `${baseUrl}/menu.html?loc=${key}`;
+
+      const card = document.createElement('div');
+      card.className = 'qr-card';
+      card.innerHTML = `
+        <h2>${loc.name}</h2>
+        <div class="loc-id">${loc.id}</div>
+        <canvas id="qr-${key}"></canvas>
+        <div class="url-preview">${menuUrl}</div>
+        <button class="btn-download" onclick="downloadQR('${key}', '${loc.name}')">Descargar PNG</button>
+      `;
+      grid.appendChild(card);
+
+      QRCode.toCanvas(document.getElementById(`qr-${key}`), menuUrl, {
+        width: 220,
+        margin: 2,
+        color: { dark: '#1e293b', light: '#ffffff' }
+      });
+    });
+
+    function downloadQR(locId, name) {
+      const canvas = document.getElementById(`qr-${locId}`);
+      const link = document.createElement('a');
+      link.download = `QR-${name.replace(/\s+/g, '_')}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+  </script>
+</body>
+</html>
