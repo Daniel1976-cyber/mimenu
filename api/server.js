@@ -12,7 +12,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 let beverages = [
   { id: 1, name: "Agua Gaseada Ciego Montero 1500 ml", unit: "1500 ml", priceUSD: null, priceCUP: 400, category: "Bebidas", active: true, stock: 50 },
