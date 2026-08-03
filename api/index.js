@@ -75,8 +75,8 @@ let beverages = [
   { id: 63, name: "Licor de Café Cubay 700 ml", unit: "45 ml", priceUSD: null, priceCUP: 130, category: "Licor", active: true, stock: 25 },
   { id: 64, name: "Licor de Coco Cocobay 1000 ml", unit: "45 ml", priceUSD: null, priceCUP: 95, category: "Licor", active: true, stock: 25 },
   { id: 65, name: "Licor de Melocotón Sweetesh 700 ml", unit: "45 ml", priceUSD: null, priceCUP: 130, category: "Licor", active: true, stock: 25 },
-  { id: 66, name: "Licor de Menta Cubay 700 ml", unit: "45 ml", priceUSD: null, priceCUP: 85, category: "Licor", active: true, stock: 25 },
-  { id: 67, name: "Licor de Menta Cubay 700 ml", unit: "45 ml", priceUSD: null, priceCUP: 130, category: "Licor", active: true, stock: 25 },
+  { id: 66, name: "Licor de Menta Cubay 700 ml", unit: "45 ml", priceUSD: null, priceCUP: 130, category: "Licor", active: true, stock: 25 },
+  { id: 67, name: "Licor de Menta Cubay 700 ml", unit: "45 ml", priceUSD: null, priceCUP: 85, category: "Licor", active: true, stock: 25 },
   { id: 68, name: "Licor de Piña Cubay 700 ml", unit: "45 ml", priceUSD: null, priceCUP: 130, category: "Licor", active: true, stock: 25 },
   { id: 69, name: "Licor Fresa Sorel 700 ml", unit: "45 ml", priceUSD: null, priceCUP: 140, category: "Licor", active: true, stock: 25 },
   { id: 70, name: "Licor Granadina Cubay 700 ml", unit: "45 ml", priceUSD: null, priceCUP: 130, category: "Licor", active: true, stock: 25 },
@@ -156,8 +156,8 @@ let beverages = [
   { id: 144, name: "Ron Eminente Ambar Claro 700 ml", unit: "700 ml", priceUSD: 2.00, priceCUP: 1000, category: "Ron", active: true, stock: 20 },
   { id: 145, name: "Ron Eminente Reserva 7 Años 700 ml", unit: "700 ml", priceUSD: 4.00, priceCUP: 2000, category: "Ron", active: true, stock: 20 },
   { id: 146, name: "Ron Especial Havana Club 700 ml", unit: "45 ml", priceUSD: 1.00, priceCUP: 500, category: "Ron", active: true, stock: 40 },
-  { id: 147, name: "Ron Extra Añejo 11 Años Santiago de Cuba 700 ml", unit: "700 ml", priceUSD: 3.00, priceCUP: 1500, category: "Ron", active: true, stock: 20 },
-  { id: 148, name: "Ron Extra Añejo 12 Años Santiago de Cuba 700 ml", unit: "700 ml", priceUSD: 4.00, priceCUP: 2000, category: "Ron", active: true, stock: 20 },
+  { id: 147, name: "Ron Extra Añejo 11 Años Santiago de Cuba 700 ml", unit: "45 ml", priceUSD: 3.00, priceCUP: 1500, category: "Ron", active: true, stock: 20 },
+  { id: 148, name: "Ron Extra Añejo 12 Años Santiago de Cuba 700 ml", unit: "45 ml", priceUSD: 4.00, priceCUP: 2000, category: "Ron", active: true, stock: 20 },
   { id: 149, name: "Ron Extra Añejo 1870 Cubay 700 ml", unit: "700 ml", priceUSD: 90.00, priceCUP: 45000, category: "Ron", active: true, stock: 10 },
   { id: 150, name: "Ron Extra Añejo 20 Años Santiago de Cuba 700 ml", unit: "700 ml", priceUSD: 70.00, priceCUP: 35000, category: "Ron", active: true, stock: 10 },
   { id: 151, name: "Ron HC Union Havana Club 700 ml", unit: "700 ml", priceUSD: 100.00, priceCUP: 50000, category: "Ron", active: true, stock: 10 },
@@ -203,4 +203,205 @@ let beverages = [
   { id: 191, name: "Whisky Clan Campbell 1000 ml", unit: "45 ml", priceUSD: 1.00, priceCUP: 500, category: "Whisky", active: true, stock: 25 },
   { id: 192, name: "Whisky VAT 69 750 ml", unit: "45 ml", priceUSD: 1.00, priceCUP: 500, category: "Whisky", active: true, stock: 25 },
   { id: 193, name: "Whisky Ballantines Finest 40% 700 ml", unit: "45 ml", priceUSD: 2.00, priceCUP: 1000, category: "Whisky", active: true, stock: 25 },
-  { id: 194,
+  { id: 194, name: "Whisky Jameson Irish 5 Años 750 ml", unit: "45 ml", priceUSD: 2.00, priceCUP: 1000, category: "Whisky", active: true, stock: 25 },
+  { id: 195, name: "Whisky Marshall Bourbon 40% 700 ml", unit: "700 ml", priceUSD: 2.00, priceCUP: 1000, category: "Whisky", active: true, stock: 25 },
+  { id: 196, name: "Whisky Jameson Original 40% 700 ml", unit: "45 ml", priceUSD: 2.00, priceCUP: 1000, category: "Whisky", active: true, stock: 25 },
+  { id: 197, name: "Whisky Red Label Johnnie Walker 750 ml", unit: "45 ml", priceUSD: 2.00, priceCUP: 1000, category: "Whisky", active: true, stock: 25 },
+  { id: 198, name: "Whisky Buchanan's Reserve 18 Años 750 ml", unit: "45 ml", priceUSD: 9.00, priceCUP: 4500, category: "Whisky", active: true, stock: 15 },
+  { id: 199, name: "Whisky Glen Silver's Scotch 40° 1000 ml", unit: "1000 ml", priceUSD: 2.00, priceCUP: 1000, category: "Whisky", active: true, stock: 20 },
+  { id: 200, name: "Whisky Elliot Hall Spirit 40% 1000 ml", unit: "45 ml", priceUSD: 1.00, priceCUP: 500, category: "Whisky", active: true, stock: 25 },
+  { id: 201, name: "Whisky Peter Wallace Spirit 40% 700 ml", unit: "45 ml", priceUSD: 1.00, priceCUP: 500, category: "Whisky", active: true, stock: 25 },
+  { id: 202, name: "Whisky Howells Spirit 40° 1000 ml", unit: "45 ml", priceUSD: 1.00, priceCUP: 500, category: "Whisky", active: true, stock: 25 },
+  { id: 203, name: "Whisky Old Premier's Spirit 700 ml", unit: "45 ml", priceUSD: 1.00, priceCUP: 500, category: "Whisky", active: true, stock: 25 },
+  { id: 204, name: "Whisky Black Head Spirit 700 ml", unit: "700 ml", priceUSD: 1.00, priceCUP: 500, category: "Whisky", active: true, stock: 25 },
+  { id: 205, name: "Whisky Old Partner Spirits 40% 1000 ml", unit: "45 ml", priceUSD: 1.00, priceCUP: 500, category: "Whisky", active: true, stock: 25 },
+  { id: 206, name: "Bistec de Cerdo Grilée", unit: "gr", priceUSD: null, priceCUP: 2700, category: "Carnes", active: true, stock: 50 },
+  { id: 207, name: "Bistec de Cerdo Grilée con Guarnición", unit: "gr", priceUSD: null, priceCUP: 3000, category: "Carnes", active: true, stock: 50 },
+  { id: 208, name: "Bistec de Cerdo Sosaka", unit: "gr", priceUSD: null, priceCUP: 3200, category: "Carnes", active: true, stock: 50 },
+  { id: 209, name: "Bistec de Cerdo Sosaka con Guarnición", unit: "gr", priceUSD: null, priceCUP: 3500, category: "Carnes", active: true, stock: 50 },
+  { id: 210, name: "Bistec de Res en Cazuela", unit: "gr", priceUSD: null, priceCUP: 2000, category: "Carnes", active: true, stock: 50 },
+  { id: 211, name: "Bistec de Res en Cazuela con Guarnición", unit: "gr", priceUSD: null, priceCUP: 2300, category: "Carnes", active: true, stock: 50 },
+  { id: 212, name: "Bistec de Res Grilée", unit: "gr", priceUSD: null, priceCUP: 2000, category: "Carnes", active: true, stock: 50 },
+  { id: 213, name: "Bistec de Res Grilée con Guarnición", unit: "gr", priceUSD: null, priceCUP: 2300, category: "Carnes", active: true, stock: 50 },
+  { id: 214, name: "Cerdo Asado", unit: "gr", priceUSD: null, priceCUP: 3300, category: "Carnes", active: true, stock: 50 },
+  { id: 215, name: "Cerdo Asado con Guarnición", unit: "gr", priceUSD: null, priceCUP: 3600, category: "Carnes", active: true, stock: 50 },
+  { id: 216, name: "Chuletas de Puerco a la Plancha", unit: "gr", priceUSD: null, priceCUP: 500, category: "Carnes", active: true, stock: 50 },
+  { id: 217, name: "Lomo Ahumado Grilée", unit: "gr", priceUSD: null, priceCUP: 2700, category: "Carnes", active: true, stock: 50 },
+  { id: 218, name: "Lomo Ahumado Grilée con Guarnición", unit: "gr", priceUSD: null, priceCUP: 3000, category: "Carnes", active: true, stock: 50 },
+  { id: 219, name: "Masa de Cerdo Frita", unit: "gr", priceUSD: null, priceCUP: 3500, category: "Carnes", active: true, stock: 50 },
+  { id: 220, name: "Masa de Cerdo con Guarnición", unit: "gr", priceUSD: null, priceCUP: 3800, category: "Carnes", active: true, stock: 50 },
+  { id: 221, name: "Ropa Vieja", unit: "gr", priceUSD: null, priceCUP: 2200, category: "Carnes", active: true, stock: 50 },
+  { id: 222, name: "Ropa Vieja con Guarnición", unit: "gr", priceUSD: null, priceCUP: 2500, category: "Carnes", active: true, stock: 50 },
+  { id: 223, name: "Pollo Cordon Bleu", unit: "gr", priceUSD: null, priceCUP: 2500, category: "Pollos", active: true, stock: 50 },
+  { id: 224, name: "Pollo Cordon Bleu con Guarnición", unit: "gr", priceUSD: null, priceCUP: 2800, category: "Pollos", active: true, stock: 50 },
+  { id: 225, name: "Pollo en Fricasé", unit: "gr", priceUSD: null, priceCUP: 2000, category: "Pollos", active: true, stock: 50 },
+  { id: 226, name: "Pollo en Fricasé con Guarnición", unit: "gr", priceUSD: null, priceCUP: 2300, category: "Pollos", active: true, stock: 50 },
+  { id: 227, name: "Pollo Frito", unit: "gr", priceUSD: null, priceCUP: 2000, category: "Pollos", active: true, stock: 50 },
+  { id: 228, name: "Pollo Frito con Guarnición", unit: "gr", priceUSD: null, priceCUP: 2300, category: "Pollos", active: true, stock: 50 },
+  { id: 229, name: "Pollo Grilée", unit: "gr", priceUSD: null, priceCUP: 2000, category: "Pollos", active: true, stock: 50 },
+  { id: 230, name: "Pollo Grilée con Guarnición", unit: "gr", priceUSD: null, priceCUP: 2300, category: "Pollos", active: true, stock: 50 },
+  { id: 231, name: "Pollo Empanado Frito", unit: "gr", priceUSD: null, priceCUP: 1200, category: "Pollos", active: true, stock: 50 },
+  { id: 232, name: "Suprema de Pollo", unit: "gr", priceUSD: null, priceCUP: 2000, category: "Pollos", active: true, stock: 50 },
+  { id: 233, name: "Suprema de Pollo con Guarnición", unit: "gr", priceUSD: null, priceCUP: 2300, category: "Pollos", active: true, stock: 50 },
+  { id: 234, name: "Espirán de Pescado", unit: "gr", priceUSD: null, priceCUP: 1700, category: "Pescados", active: true, stock: 50 },
+  { id: 235, name: "Espirán de Pescado con Guarnición", unit: "gr", priceUSD: null, priceCUP: 2000, category: "Pescados", active: true, stock: 50 },
+  { id: 236, name: "Filete de Pescado Entomatado", unit: "gr", priceUSD: null, priceCUP: 1700, category: "Pescados", active: true, stock: 50 },
+  { id: 237, name: "Filete de Pescado Entomatado con Guarnición", unit: "gr", priceUSD: null, priceCUP: 2000, category: "Pescados", active: true, stock: 50 },
+  { id: 238, name: "Filete de Pescado Grilée", unit: "gr", priceUSD: null, priceCUP: 1700, category: "Pescados", active: true, stock: 50 },
+  { id: 239, name: "Filete de Pescado Grilée con Guarnición", unit: "gr", priceUSD: null, priceCUP: 2000, category: "Pescados", active: true, stock: 50 },
+  { id: 240, name: "Copa de Cerveza Dispensada 300 ml", unit: "300 ml", priceUSD: null, priceCUP: 180, category: "Bebidas", active: true, stock: 50 },
+  { id: 241, name: "Copa de Cerveza Dispensada 330 ml", unit: "330 ml", priceUSD: null, priceCUP: 200, category: "Bebidas", active: true, stock: 50 },
+  { id: 242, name: "Cola de Langosta Grilée", unit: "gr", priceUSD: null, priceCUP: 3500, category: "Mariscos", active: true, stock: 50 },
+  { id: 243, name: "Cola de Langosta Grilée con Guarnición", unit: "gr", priceUSD: null, priceCUP: 3800, category: "Mariscos", active: true, stock: 50 },
+  { id: 244, name: "Camarones al Ajillo", unit: "gr", priceUSD: null, priceCUP: 3000, category: "Mariscos", active: true, stock: 50 },
+  { id: 245, name: "Camarones al Ajillo con Guarnición", unit: "gr", priceUSD: null, priceCUP: 3300, category: "Mariscos", active: true, stock: 50 },
+  { id: 246, name: "Spaguetti a la Boloñesa", unit: "gr", priceUSD: null, priceCUP: 1500, category: "Pastas", active: true, stock: 50 },
+  { id: 247, name: "Spaguettis con Queso", unit: "gr", priceUSD: null, priceCUP: 1000, category: "Pastas", active: true, stock: 50 },
+  { id: 248, name: "Spaguittis con Queso y Jamón", unit: "gr", priceUSD: null, priceCUP: 2000, category: "Pastas", active: true, stock: 50 },
+  { id: 249, name: "Crema Aurora", unit: "gr", priceUSD: null, priceCUP: 500, category: "Comidas", active: true, stock: 50 },
+  { id: 250, name: "Crema de Queso", unit: "gr", priceUSD: null, priceCUP: 500, category: "Comidas", active: true, stock: 50 },
+  { id: 251, name: "Crema Reina", unit: "gr", priceUSD: null, priceCUP: 600, category: "Comidas", active: true, stock: 50 },
+  { id: 252, name: "Crema Virginia", unit: "gr", priceUSD: null, priceCUP: 700, category: "Comidas", active: true, stock: 50 },
+  { id: 253, name: "Croquetas al Plato", unit: "gr", priceUSD: null, priceCUP: 600, category: "Comidas", active: true, stock: 50 },
+  { id: 254, name: "Ensalada de Vegetales", unit: "gr", priceUSD: null, priceCUP: 400, category: "Guarniciones", active: true, stock: 50 },
+  { id: 255, name: "Ensalada Italiana", unit: "gr", priceUSD: null, priceCUP: 600, category: "Guarniciones", active: true, stock: 50 },
+  { id: 256, name: "Arroz Blanco", unit: "gr", priceUSD: null, priceCUP: 250, category: "Guarniciones", active: true, stock: 50 },
+  { id: 257, name: "Arroz con Gris", unit: "gr", priceUSD: null, priceCUP: 400, category: "Guarniciones", active: true, stock: 50 },
+  { id: 258, name: "Arroz con Subproducto de Cerdo", unit: "gr", priceUSD: null, priceCUP: 700, category: "Guarniciones", active: true, stock: 50 },
+  { id: 259, name: "Arroz con Subproducto de Pollo", unit: "gr", priceUSD: null, priceCUP: 600, category: "Guarniciones", active: true, stock: 50 },
+  { id: 260, name: "Pan con Bistec de Res", unit: "gr", priceUSD: null, priceCUP: 1200, category: "Guarniciones", active: true, stock: 50 },
+  { id: 261, name: "Papas Fritas", unit: "gr", priceUSD: null, priceCUP: 700, category: "Guarniciones", active: true, stock: 50 },
+  { id: 262, name: "Sandwich de Pollo", unit: "gr", priceUSD: null, priceCUP: 800, category: "Sandwich", active: true, stock: 50 },
+  { id: 263, name: "Sandwich de Queso", unit: "gr", priceUSD: null, priceCUP: 600, category: "Sandwich", active: true, stock: 50 },
+  { id: 264, name: "Sandwich Jamón", unit: "gr", priceUSD: null, priceCUP: 950, category: "Sandwich", active: true, stock: 50 },
+  { id: 265, name: "Sandwich Jamón y Queso", unit: "gr", priceUSD: null, priceCUP: 1200, category: "Sandwich", active: true, stock: 50 },
+  { id: 266, name: "Sandwich Jamonada", unit: "gr", priceUSD: null, priceCUP: 750, category: "Sandwich", active: true, stock: 50 },
+  { id: 267, name: "Sandwich Jamonada y Queso", unit: "gr", priceUSD: null, priceCUP: 850, category: "Sandwich", active: true, stock: 50 },
+  { id: 268, name: "Sandwich de Lechón", unit: "gr", priceUSD: null, priceCUP: 1200, category: "Sandwich", active: true, stock: 50 },
+  { id: 269, name: "Sandwich de Pescado", unit: "gr", priceUSD: null, priceCUP: 1200, category: "Sandwich", active: true, stock: 50 },
+  { id: 270, name: "Sandwich de Carne Frita", unit: "gr", priceUSD: null, priceCUP: 1200, category: "Sandwich", active: true, stock: 50 },
+  { id: 271, name: "Sandwich de Ternera", unit: "gr", priceUSD: null, priceCUP: 1200, category: "Sandwich", active: true, stock: 50 },
+  { id: 272, name: "Sandwich de Huevos", unit: "gr", priceUSD: null, priceCUP: 600, category: "Sandwich", active: true, stock: 50 },
+  { id: 273, name: "Sandwich de Aguacate", unit: "gr", priceUSD: null, priceCUP: 700, category: "Sandwich", active: true, stock: 50 },
+  { id: 274, name: "Sandwich de Croquetas", unit: "gr", priceUSD: null, priceCUP: 800, category: "Sandwich", active: true, stock: 50 },
+  { id: 275, name: "Hamburguesa de Res", unit: "gr", priceUSD: null, priceCUP: 1000, category: "Sandwich", active: true, stock: 50 },
+  { id: 276, name: "Hamburguesa de Res XXLL con Pan", unit: "gr", priceUSD: null, priceCUP: 1500, category: "Sandwich", active: true, stock: 50 },
+  { id: 277, name: "Hamburguesa de Res Gratinada con Jamón", unit: "gr", priceUSD: null, priceCUP: 1300, category: "Sandwich", active: true, stock: 50 },
+  { id: 278, name: "Hamburguesa de Res Gratinada con Pan", unit: "gr", priceUSD: null, priceCUP: 1100, category: "Sandwich", active: true, stock: 50 },
+  { id: 279, name: "Queso Empanado Frito", unit: "gr", priceUSD: null, priceCUP: 1200, category: "Sandwich", active: true, stock: 50 },
+  { id: 280, name: "Café Americano", unit: "ml", priceUSD: null, priceCUP: 100, category: "Bebidas", active: true, stock: 50 },
+  { id: 281, name: "Café Capuchino", unit: "ml", priceUSD: null, priceCUP: 200, category: "Bebidas", active: true, stock: 50 },
+  { id: 282, name: "Café Carajillo", unit: "ml", priceUSD: null, priceCUP: 180, category: "Bebidas", active: true, stock: 50 },
+  { id: 283, name: "Café con Leche", unit: "ml", priceUSD: null, priceCUP: 200, category: "Bebidas", active: true, stock: 50 },
+  { id: 284, name: "Café Cortadito", unit: "ml", priceUSD: null, priceCUP: 130, category: "Bebidas", active: true, stock: 50 },
+  { id: 285, name: "Café Expreso", unit: "ml", priceUSD: null, priceCUP: 100, category: "Bebidas", active: true, stock: 50 },
+  { id: 286, name: "Infusión de Té", unit: "ml", priceUSD: null, priceCUP: 60, category: "Bebidas", active: true, stock: 50 },
+  { id: 287, name: "Jugo de Frutas Naturales (Fruta Bomba)", unit: "ml", priceUSD: null, priceCUP: 80, category: "Bebidas", active: true, stock: 50 },
+  { id: 288, name: "Jugo de Frutas Naturales (Guayaba)", unit: "ml", priceUSD: null, priceCUP: 80, category: "Bebidas", active: true, stock: 50 },
+  { id: 289, name: "Jugo de Frutas Naturales (Mango)", unit: "ml", priceUSD: null, priceCUP: 80, category: "Bebidas", active: true, stock: 50 },
+  { id: 290, name: "Jugo de Frutas Naturales (Melón)", unit: "ml", priceUSD: null, priceCUP: 80, category: "Bebidas", active: true, stock: 50 },
+  { id: 291, name: "Jugo de Frutas Naturales (Piña)", unit: "ml", priceUSD: null, priceCUP: 80, category: "Bebidas", active: true, stock: 50 },
+  { id: 292, name: "Coctel Caipirinha", unit: "ml", priceUSD: null, priceCUP: 800, category: "Bebidas", active: true, stock: 50 },
+  { id: 293, name: "Coctel Cuba Libre", unit: "ml", priceUSD: null, priceCUP: 800, category: "Bebidas", active: true, stock: 50 },
+  { id: 294, name: "Coctel Cubata", unit: "ml", priceUSD: null, priceCUP: 800, category: "Bebidas", active: true, stock: 50 },
+  { id: 295, name: "Coctel Daiquiri", unit: "ml", priceUSD: null, priceCUP: 800, category: "Bebidas", active: true, stock: 50 },
+  { id: 296, name: "Coctel Limonada", unit: "ml", priceUSD: null, priceCUP: 200, category: "Bebidas", active: true, stock: 50 },
+  { id: 297, name: "Coctel Margarita", unit: "ml", priceUSD: null, priceCUP: 800, category: "Bebidas", active: true, stock: 50 },
+  { id: 298, name: "Coctel Mojito", unit: "ml", priceUSD: null, priceCUP: 800, category: "Bebidas", active: true, stock: 50 },
+  { id: 299, name: "Coctel Piña Colada", unit: "ml", priceUSD: null, priceCUP: 800, category: "Bebidas", active: true, stock: 50 },
+  { id: 300, name: "Coctel Sangría", unit: "ml", priceUSD: null, priceCUP: 800, category: "Bebidas", active: true, stock: 50 },
+  { id: 301, name: "Dulce de Arroz con Leche", unit: "gr", priceUSD: null, priceCUP: 200, category: "Comidas", active: true, stock: 50 },
+  { id: 302, name: "Dulce Flan de Leche", unit: "gr", priceUSD: null, priceCUP: 250, category: "Comidas", active: true, stock: 50 }
+];
+
+let nextId = 303;
+
+app.get('/api/beverages', (req, res) => {
+  const { category, search, active } = req.query;
+  let result = beverages;
+  if (category) result = result.filter(b => b.category === category);
+  if (search) result = result.filter(b => b.name.toLowerCase().includes(search.toLowerCase()));
+  if (active !== undefined) result = result.filter(b => b.active === (active === 'true'));
+  res.json(result);
+});
+
+app.get('/api/beverages/menu', (req, res) => {
+  const result = beverages.filter(b => b.active && b.stock > 0);
+  const categories = [...new Set(result.map(b => b.category))];
+  res.json({ beverages: result, categories });
+});
+
+app.get('/api/beverages/:id', (req, res) => {
+  const beverage = beverages.find(b => b.id === parseInt(req.params.id));
+  if (!beverage) return res.status(404).json({ error: 'Bebida no encontrada' });
+  res.json(beverage);
+});
+
+app.post('/api/beverages', (req, res) => {
+  const { name, unit, priceUSD, priceCUP, category, active, stock } = req.body;
+  if (!name || !category) return res.status(400).json({ error: 'Nombre y categoría son obligatorios' });
+  const newBeverage = {
+    id: nextId++,
+    name,
+    unit: unit || 'u',
+    priceUSD: priceUSD || null,
+    priceCUP: priceCUP || 0,
+    category,
+    active: active !== undefined ? active : true,
+    stock: stock || 0
+  };
+  beverages.push(newBeverage);
+  res.status(201).json(newBeverage);
+});
+
+app.put('/api/beverages/:id', (req, res) => {
+  const idx = beverages.findIndex(b => b.id === parseInt(req.params.id));
+  if (idx === -1) return res.status(404).json({ error: 'Bebida no encontrada' });
+  const { name, unit, priceUSD, priceCUP, category, active, stock } = req.body;
+  if (name !== undefined) beverages[idx].name = name;
+  if (unit !== undefined) beverages[idx].unit = unit;
+  if (priceUSD !== undefined) beverages[idx].priceUSD = priceUSD;
+  if (priceCUP !== undefined) beverages[idx].priceCUP = priceCUP;
+  if (category !== undefined) beverages[idx].category = category;
+  if (active !== undefined) beverages[idx].active = active;
+  if (stock !== undefined) beverages[idx].stock = stock;
+  res.json(beverages[idx]);
+});
+
+app.patch('/api/beverages/:id/toggle', (req, res) => {
+  const beverage = beverages.find(b => b.id === parseInt(req.params.id));
+  if (!beverage) return res.status(404).json({ error: 'Bebida no encontrada' });
+  beverage.active = !beverage.active;
+  res.json(beverage);
+});
+
+app.patch('/api/beverages/:id/stock', (req, res) => {
+  const beverage = beverages.find(b => b.id === parseInt(req.params.id));
+  if (!beverage) return res.status(404).json({ error: 'Bebida no encontrada' });
+  const { stock } = req.body;
+  beverage.stock = stock;
+  res.json(beverage);
+});
+
+app.delete('/api/beverages/:id', (req, res) => {
+  const idx = beverages.findIndex(b => b.id === parseInt(req.params.id));
+  if (idx === -1) return res.status(404).json({ error: 'Bebida no encontrada' });
+  beverages.splice(idx, 1);
+  res.status(204).send();
+});
+
+app.get('/api/categories', (req, res) => {
+  const categories = [...new Set(beverages.map(b => b.category))].sort();
+  res.json(categories);
+});
+
+app.get('/api/stats', (req, res) => {
+  const total = beverages.length;
+  const active = beverages.filter(b => b.active).length;
+  const inactive = total - active;
+  const outOfStock = beverages.filter(b => b.stock === 0).length;
+  const categories = [...new Set(beverages.map(b => b.category))].length;
+  res.json({ total, active, inactive, outOfStock, categories });
+});
+
+module.exports = app;
