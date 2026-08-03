@@ -1,4 +1,5 @@
 const express = require('express');
+const serverless = require('serverless-http');
 const app = express();
 
 app.use(express.json());
@@ -404,4 +405,4 @@ app.get('/api/stats', (req, res) => {
   res.json({ total, active, inactive, outOfStock, categories });
 });
 
-module.exports = app;
+module.exports = serverless(app);
