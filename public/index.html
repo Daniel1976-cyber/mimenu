@@ -5,43 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi Menú</title>
   <style>
+   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #1a1a2e;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-      padding: 20px;
-    }
-    h1 { font-size: 3rem; margin-bottom: 10px; color: #e94560; }
-    p { font-size: 1.2rem; color: #aaa; margin-bottom: 40px; }
-    .links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
-    a {
-      padding: 18px 40px;
-      background: #e94560;
-      color: white;
-      text-decoration: none;
-      border-radius: 12px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      transition: transform 0.2s, background 0.2s;
-    }
-    a:hover { background: #c73e54; transform: translateY(-3px); }
-    .icon { font-size: 4rem; margin-bottom: 20px; }
+    body { font-family: 'Inter', sans-serif; background: #0c0a09; color: #fafaf9; min-height: 100vh; display: flex; flex-direction: column; }
+    .hero { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px; text-align: center; background: linear-gradient(180deg, #1c1917 0%, #0c0a09 100%); }
+    .hero .icon { font-size: 5rem; margin-bottom: 24px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; color: #fbbf24; margin-bottom: 12px; }
+    .hero p { color: #a8a29e; font-size: 1.2rem; font-weight: 300; max-width: 500px; margin-bottom: 32px; }
+    .location-bar { display: flex; gap: 10px; margin-bottom: 40px; }
+    .loc-btn { padding: 10px 24px; background: #1c1917; border: 1px solid #292524; border-radius: 30px; color: #a8a29e; cursor: pointer; font-family: 'Inter', sans-serif; font-size: .9rem; transition: .25s; }
+    .loc-btn:hover { border-color: #fbbf24; color: #fbbf24; }
+    .loc-btn.active { background: #fbbf24; color: #0c0a09; border-color: #fbbf24; font-weight: 600; }
+    .cards { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+    .card { background: #1c1917; border: 1px solid #292524; border-radius: 20px; padding: 40px; width: 300px; text-decoration: none; transition: .3s; position: relative; overflow: hidden; }
+    .card:hover { border-color: #fbbf24; transform: translateY(-4px); box-shadow: 0 12px 40px rgba(251,191,36,.1); }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #fbbf24, #f59e0b); opacity: 0; transition: .3s; }
+    .card:hover::before { opacity: 1; }
+    .card .card-icon { font-size: 2.5rem; margin-bottom: 16px; }
+    .card h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fafaf9; margin-bottom: 8px; }
+    .card p { color: #78716c; font-size: .95rem; line-height: 1.5; }
+    .card .arrow { display: inline-block; margin-top: 20px; color: #fbbf24; font-size: .9rem; font-weight: 600; }
+    footer { text-align: center; padding: 24px; color: #57534e; font-size: .8rem; border-top: 1px solid #292524; }
+    @media (max-width: 640px) { .hero h1 { font-size: 2.2rem; } .cards { flex-direction: column; align-items: center; } .card { width: 100%; max-width: 340px; } }
   </style>
 </head>
 <body>
-  <div class="icon">🍹</div>
-  <h1>Mi Menú</h1>
-  <p>Sistema de gestión de inventario de bebidas y comidas</p>
-  <div class="links">
-    <a href="/menu.html">📋 Ver Menú Público</a>
-    <a href="/admin.html">🔐 Panel Admin</a>
+   <div class="hero">
+    <div class="icon">🍸</div>
+    <h1 id="locTitle">Sistema de Bebidas</h1>
+    <p>Seleccione una sucursal para continuar</p>
+    <div class="location-bar" id="locBar"></div>
+    <div class="cards">
+      <a href="login.html" class="card">
+        <div class="card-icon">⚙️</div>
+        <h2>Panel Admin</h2>
+        <p>Gestione el inventario, active o desactive productos, administre el stock y los precios.</p>
+        <span class="arrow">Ir al panel &rarr;</span>
+      </a>
+      <a href="menu.html" class="card">
+        <div class="card-icon">📋</div>
+        <h2>Menu Publico</h2>
+        <p>Visualice el menu que ven los clientes con solo las bebidas disponibles y activas.</p>
+        <span class="arrow">Ver menu &rarr;</span>
+      </a>
+    </div>
   </div>
+   <footer id="footerText">Sistema de Bebidas &copy; 2026</footer>
 </body>
 </html>
