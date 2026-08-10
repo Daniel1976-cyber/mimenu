@@ -3,10 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
-  <title>Redirigiendo...</title>
+  <title>Mi Menú</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1a1a2e;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 { font-size: 3rem; margin-bottom: 10px; color: #e94560; }
+    p { font-size: 1.2rem; color: #aaa; margin-bottom: 40px; }
+    .links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+    a {
+      padding: 18px 40px;
+      background: #e94560;
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: transform 0.2s, background 0.2s;
+    }
+    a:hover { background: #c73e54; transform: translateY(-3px); }
+    .icon { font-size: 4rem; margin-bottom: 20px; }
+  </style>
 </head>
 <body>
-  <p>Redirigiendo a <a href="menu.html">menu.html</a>...</p>
+  <div class="icon">🍹</div>
+  <h1>Mi Menú</h1>
+  <p>Sistema de gestión de inventario de bebidas y comidas</p>
+  <div class="links">
+    <a href="/menu.html">📋 Ver Menú Público</a>
+    <a href="/admin.html">🔐 Panel Admin</a>
+  </div>
 </body>
 </html>
