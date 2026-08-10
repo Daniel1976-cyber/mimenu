@@ -1,12 +1,19 @@
 {
   "name": "mimenu",
   "version": "1.0.0",
+  "description": "Sistema de Bebidas",
   "main": "api/index.js",
   "scripts": {
     "start": "node api/server.js",
-    "dev": "nodemon api/server.js"
+    "dev": "nodemon api/server.js",
+    "build": "echo Build OK",
+    "deploy": "vercel --prod"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
     "express": "^5.2.1",
     "serverless-http": "^4.0.0",
     "xlsx": "^0.18.5"

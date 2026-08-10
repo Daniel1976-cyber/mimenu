@@ -4,12 +4,11 @@ const path = require('path');
 const supabase = require('./supabase');
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../public')));
-
-app.use(express.json());
+// Servir archivos estáticos del frontend
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 
+// CORS
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, PATCH');
@@ -35,7 +34,7 @@ app.get('/api/beverages', async (req, res) => {
   }
 });
 
-// GET active beverages only (menu público)
+// GET active beverages only (menú público)
 app.get('/api/beverages/menu', async (req, res) => {
   try {
     const { data, error } = await supabase
@@ -132,7 +131,6 @@ app.put('/api/beverages/:id', async (req, res) => {
 // PATCH toggle active status
 app.patch('/api/beverages/:id/toggle', async (req, res) => {
   try {
-    // Primero obtener el estado actual
     const { data: current, error: err1 } = await supabase
       .from('beverages')
       .select('active')
