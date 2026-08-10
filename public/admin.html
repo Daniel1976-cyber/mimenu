@@ -35,6 +35,11 @@
     .filters input:focus, .filters select:focus { outline: none; border-color: #f59e0b; }
     .filters input { flex: 1; min-width: 200px; }
     .filters select { min-width: 160px; }
+    .search-wrapper { position: relative; }
+    .search-wrapper input { padding-right: 12px; }
+    .search-dropdown { position: absolute; top: 100%; left: 0; right: 0; background: #1e293b; border: 1px solid #334155; border-radius: 8px; max-height: 200px; overflow-y: auto; z-index: 1000; }
+    .search-dropdown div { padding: 8px 12px; cursor: pointer; font-size: .85rem; border-bottom: 1px solid #334155; }
+    .search-dropdown div:hover { background: #334155; }
 
     .table-container { background: #1e293b; border: 1px solid #334155; border-radius: 16px; overflow: hidden; }
     table { width: 100%; border-collapse: collapse; }
@@ -74,12 +79,6 @@
     .btn-cancel:hover { background: #334155; }
     .btn-save { padding: 10px 24px; background: #f59e0b; border: none; border-radius: 8px; color: #0f172a; font-weight: 600; cursor: pointer; font-family: inherit; font-size: .9rem; }
     .btn-save:hover { background: #d97706; }
-
-    .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 24px; padding: 16px; }
-    .pagination button { padding: 8px 14px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #94a3b8; cursor: pointer; font-family: inherit; transition: .2s; }
-    .pagination button:hover { background: #334155; color: #fff; }
-    .pagination button.active { background: #f59e0b; color: #0f172a; border-color: #f59e0b; font-weight: 600; }
-    .pagination .info { padding: 8px 14px; color: #64748b; font-size: .85rem; }
 
     .toast { position: fixed; bottom: 24px; right: 24px; padding: 14px 24px; background: #22c55e; color: #fff; border-radius: 10px; font-weight: 500; transform: translateY(100px); opacity: 0; transition: .3s; z-index: 2000; }
     .toast.show { transform: translateY(0); opacity: 1; }
@@ -141,7 +140,11 @@
     </div>
 
     <div class="filters">
-      <input type="text" id="searchInput" placeholder="Buscar bebida..." oninput="loadBeverages()">
+      <div class="search-wrapper">
+        <input type="text" id="searchInput" placeholder="Buscar bebida..." autocomplete="off">
+        <div id="searchDropdown" class="search-dropdown" style="display: none;"></div>
+      </div>
+      <button class="btn-add" style="background:#334155;color:#e2e8f0;" onclick="clearSearch()">Limpiar</button>
       <select id="filterCategory" onchange="loadBeverages()"><option value="">Todas las categorias</option></select>
       <select id="filterStatus" onchange="loadBeverages()">
         <option value="">Todos los estados</option>
@@ -159,6 +162,7 @@
             <th>Categoria</th>
             <th>U/M</th>
             <th>Precio CUP</th>
+            <th>Precio USD</th>
             <th>Stock</th>
             <th>Estado</th>
             <th>Acciones</th>
@@ -166,7 +170,6 @@
         </thead>
         <tbody id="tableBody"><tr><td colspan="8" class="loading">Cargando...</td></tr></tbody>
       </table>
-      <div class="pagination" id="pagination"></div>
     </div>
   </div>
 
@@ -266,8 +269,6 @@
     const isFullAccess = ROLE === 'maitre';
     const API_URL = '/api';
     let allBeverages = [];
-    let currentPage = 1;
-    const perPage = 25;
 
     document.getElementById('locName').textContent = LOC.name;
     const roleBadge = document.getElementById('roleBadge');
@@ -311,8 +312,66 @@
       } catch (e) { console.error('Categories error:', e); }
     }
 
+    let searchDebounce;
+    async function performSearch() {
+      const search = document.getElementById('searchInput').value.trim();
+      let url = `${API_URL}/beverages?`;
+      if (search) url += `search=${encodeURIComponent(search)}&`;
+      const category = document.getElementById('filterCategory').value;
+      const active = document.getElementById('filterStatus').value;
+      if (category) url += `category=${encodeURIComponent(category)}&`;
+      if (active) url += `active=${active}&`;
+      try {
+        const r = await fetch(url);
+        if (!r.ok) throw new Error();
+        allBeverages = await r.json();
+        renderTable();
+        showSearchSuggestions(allBeverages, search);
+      } catch (e) {
+        document.getElementById('tableBody').innerHTML = '<tr><td colspan="8" class="loading" style="color:#ef4444">Error al cargar datos.</td></tr>';
+      }
+    }
+
+    function showSearchSuggestions(items, query) {
+      const dropdown = document.getElementById('searchDropdown');
+      if (!query) { dropdown.style.display = 'none'; return; }
+      const filtered = items.filter(b => b.name.toLowerCase().includes(query.toLowerCase())).slice(0, 10);
+      if (filtered.length === 0) { dropdown.style.display = 'none'; return; }
+      dropdown.innerHTML = filtered.map(b => `
+        <div onclick="selectSearchSuggestion(${b.id}, '${b.name.replace(/'/g, "\\'")}')">
+          ${b.name} <span>(${b.category})</span>
+        </div>
+      `).join('');
+      dropdown.style.display = 'block';
+    }
+
+    function selectSearchSuggestion(id, name) {
+      document.getElementById('searchInput').value = name;
+      document.getElementById('searchDropdown').style.display = 'none';
+      loadBeverages();
+    }
+
+    function clearSearch() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('searchDropdown').style.display = 'none';
+      loadBeverages();
+    }
+
+    document.getElementById('searchInput').addEventListener('input', function() {
+      clearTimeout(searchDebounce);
+      if (this.value) {
+        searchDebounce = setTimeout(performSearch, 300);
+      } else {
+        loadBeverages();
+      }
+    });
+
+    document.getElementById('searchInput').addEventListener('blur', function() {
+      setTimeout(() => document.getElementById('searchDropdown').style.display = 'none', 200);
+    });
+
     async function loadBeverages() {
-      const search = document.getElementById('searchInput').value;
+      const search = document.getElementById('searchInput').value.trim();
       const category = document.getElementById('filterCategory').value;
       const active = document.getElementById('filterStatus').value;
       let url = `${API_URL}/beverages?`;
@@ -323,7 +382,6 @@
         const r = await fetch(url);
         if (!r.ok) throw new Error();
         allBeverages = await r.json();
-        currentPage = 1;
         renderTable();
       } catch (e) {
         document.getElementById('tableBody').innerHTML = '<tr><td colspan="8" class="loading" style="color:#ef4444">Error al cargar datos. Verifica que el servidor este corriendo.</td></tr>';
@@ -331,21 +389,19 @@
     }
 
     function renderTable() {
-      const start = (currentPage - 1) * perPage;
-      const page = allBeverages.slice(start, start + perPage);
       const tbody = document.getElementById('tableBody');
-      if (page.length === 0) {
+      if (allBeverages.length === 0) {
         tbody.innerHTML = '<tr><td colspan="8" class="loading">No se encontraron bebidas</td></tr>';
-        document.getElementById('pagination').innerHTML = '';
         return;
       }
-      tbody.innerHTML = page.map(b => `
+      tbody.innerHTML = allBeverages.map(b => `
         <tr>
           <td>${b.id}</td>
           <td style="max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${b.name}">${b.name}</td>
           <td><span class="badge active">${b.category}</span></td>
           <td>${b.unit}</td>
-          <td>${b.priceCUP ? b.priceCUP.toLocaleString('es-CU') + ' $' : '-'}</td>
+          <td>${b.priceCUP ? b.priceCUP.toFixed(2) : '-'}</td>
+          <td>${b.priceUSD ? b.priceUSD.toFixed(2) : '-'}</td>
           <td>${isFullAccess
             ? `<input class="stock-input" type="number" value="${b.stock}" min="0" onchange="updateStock(${b.id}, this.value)">`
             : b.stock}</td>
@@ -364,18 +420,7 @@
           </td>
         </tr>
       `).join('');
-
-      const totalPages = Math.ceil(allBeverages.length / perPage);
-      const pag = document.getElementById('pagination');
-      if (totalPages <= 1) { pag.innerHTML = `<span class="info">${allBeverages.length} bebidas</span>`; return; }
-      let html = `<span class="info">${allBeverages.length} bebidas</span>`;
-      for (let i = 1; i <= totalPages; i++) {
-        html += `<button class="${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
-      }
-      pag.innerHTML = html;
-    }
-
-    function goToPage(p) { currentPage = p; renderTable(); }
+  }
 
     async function toggleBeverage(id) {
       try {
@@ -384,7 +429,7 @@
         const b = await r.json();
         showToast(b.active ? 'Bebida activada' : 'Bebida desactivada');
         await loadStats();
-        await loadBeverages();
+        loadBeverages();
       } catch (e) {
         showToast('Error al cambiar estado. Verifica el servidor.', true);
         console.error('Toggle error:', e);
@@ -400,6 +445,7 @@
         if (!r.ok) throw new Error();
         showToast('Stock actualizado');
         loadStats();
+        loadBeverages();
       } catch (e) {
         showToast('Error al actualizar stock', true);
         console.error('Stock error:', e);
