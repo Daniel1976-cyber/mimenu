@@ -2,7 +2,7 @@
   "name": "mimenu",
   "version": "1.0.0",
   "description": "Sistema de Bebidas",
-  "main": "api/index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node api/server.js",
     "dev": "nodemon api/server.js",

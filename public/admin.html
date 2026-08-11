@@ -400,8 +400,8 @@
           <td style="max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${b.name}">${b.name}</td>
           <td><span class="badge active">${b.category}</span></td>
           <td>${b.unit}</td>
-          <td>${b.priceCUP ? b.priceCUP.toFixed(2) : '-'}</td>
-          <td>${b.priceUSD ? b.priceUSD.toFixed(2) : '-'}</td>
+          <td>${b.price_cup ? b.price_cup.toFixed(2) : '-'}</td>
+          <td>${b.price_usd ? b.price_usd.toFixed(2) : '-'}</td>
           <td>${isFullAccess
             ? `<input class="stock-input" type="number" value="${b.stock}" min="0" onchange="updateStock(${b.id}, this.value)">`
             : b.stock}</td>
@@ -486,8 +486,8 @@
       document.getElementById('formName').value = b.name;
       document.getElementById('formCategory').value = b.category;
       document.getElementById('formUnit').value = b.unit;
-      document.getElementById('formPriceCUP').value = b.priceCUP || '';
-      document.getElementById('formPriceUSD').value = b.priceUSD || '';
+      document.getElementById('formPriceCUP').value = b.price_cup || '';
+      document.getElementById('formPriceUSD').value = b.price_usd || '';
       document.getElementById('formStock').value = b.stock;
       document.getElementById('formActive').value = b.active.toString();
       document.getElementById('modalOverlay').classList.add('show');
@@ -505,8 +505,8 @@
         name: document.getElementById('formName').value.trim(),
         category: document.getElementById('formCategory').value,
         unit: document.getElementById('formUnit').value,
-        priceCUP: parseFloat(document.getElementById('formPriceCUP').value) || 0,
-        priceUSD: parseFloat(document.getElementById('formPriceUSD').value) || null,
+        price_cup: parseFloat(document.getElementById('formPriceCUP').value) || 0,
+        price_usd: parseFloat(document.getElementById('formPriceUSD').value) || null,
         stock: parseInt(document.getElementById('formStock').value) || 0,
         active: document.getElementById('formActive').value === 'true'
       };

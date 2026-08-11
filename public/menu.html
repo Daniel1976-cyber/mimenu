@@ -165,18 +165,18 @@
             <div class="category-title">${cat} <span class="count">${grouped[cat].length}</span></div>
             <div class="items-grid">
               ${grouped[cat].map(b => {
-                const hasUSD = b.priceUSD && b.priceUSD > 0;
-                const hasCUP = b.priceCUP && b.priceCUP > 0;
+                const hasUSD = b.price_usd && b.price_usd > 0;
+                const hasCUP = b.price_cup && b.price_cup > 0;
                 const priceTag = hasCUP ? `<div class="price-tag">
                   <div class="price-oval">
-                    <div class="price-main">${b.priceCUP.toFixed(2)}<span class="price-curr"> CUP</span></div>
+                    <div class="price-main">${b.price_cup.toFixed(2)}<span class="price-curr"> CUP</span></div>
                   </div>
                   ${hasUSD ? `<div class="price-usd">
-                    <div class="price-usd-main">${b.priceUSD.toFixed(2)}<span class="price-usd-curr"> USD</span></div>
+                    <div class="price-usd-main">${b.price_usd.toFixed(2)}<span class="price-usd-curr"> USD</span></div>
                   </div>` : ''}
                 </div>` : (hasUSD ? `<div class="price-tag">
                   <div class="price-oval">
-                    <div class="price-main">${b.priceUSD.toFixed(2)}<span class="price-curr"> USD</span></div>
+                    <div class="price-main">${b.price_usd.toFixed(2)}<span class="price-curr"> USD</span></div>
                   </div>
                 </div>` : `<span class="item-price">-</span>`);
                 return `
