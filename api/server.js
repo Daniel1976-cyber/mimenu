@@ -207,4 +207,11 @@ app.get('/api/stats', async (req, res) => {
   }
 });
 
+if (require.main === module) {
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => {
+    console.log(`Servidor corriendo en http://localhost:${port}`);
+  });
+}
+
 module.exports = serverless(app);
