@@ -1,21 +1,50 @@
 # Sistema de Bebidas
 
-Aplicación web para gestión de inventario de bebidas y menú público con backend en Node.js/Express.
+Aplicación web para gestión de inventario de bebidas y menú público.
 
 ## Características
 
 - **Gestión de inventario**: CRUD completo para bebidas con categorías, precios y stock
 - **Múltiples sucursales**: Soporte para sucursales con usuarios diferentes
-- **Panel de administración**: Autenticación con roles (Maitré, Capitan)
+- **Panel de administración**: Autenticación con roles (Maitré, Capitán)
 - **Menú público**: Vista filtrada de productos disponibles
 
 ## Tecnologías
 
 - **Backend**: Node.js, Express 5.x
 - **Frontend**: HTML, CSS, JavaScript puro
-- **Almacenamiento**: Datos en memoria (array)
+- **Almacenamiento**: Datos en memoria
 
-## Paso a paso
+## Despliegue en Vercel (sin base de datos)
+
+Para desplegar sin configurar Supabase, renombra `server.js` a `index.js`:
+
+```bash
+mv api/server.js api/index.js
+```
+
+Luego haz deploy normalmente.
+
+## Despliegue con Supabase (bases de datos)
+
+1. Crea un proyecto en Supabase
+2. Crea la tabla `beverages` con columnas:
+   - id (integer, autoincrement)
+   - name (text)
+   - unit (text)
+   - priceUSD (float, nullable)
+   - priceCUP (integer)
+   - category (text)
+   - active (boolean)
+   - stock (integer)
+
+3. Agrega variables de entorno en Vercel:
+   - `SUPABASE_URL` - URL de tu proyecto Supabase
+   - `SUPABASE_ANON_KEY` - Key de acceso anónimo
+
+4. Asegúrate de que `api/index.js` esté activo (usa Supabase)
+
+## Paso a paso local
 
 ### 1. Instalar dependencias
 
