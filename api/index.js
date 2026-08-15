@@ -13,17 +13,30 @@ app.use((req, res, next) => {
 let supabase = null;
 let useInMemory = false;
 
+// En Vercel NO necesitas dotenv — las variables ya están en process.env
+// Solo úsalo para desarrollo local
+if (process.env.NODE_ENV !== 'production') {
+  try {
+    require('dotenv').config({ path: require('path').resolve(__dirname, '../.env.local') });
+  } catch (e) {
+    console.log('dotenv no disponible en desarrollo');
+  }
+}
+
 try {
-  require('dotenv').config({ path: require('path').resolve(__dirname, '../.env.local') });
   const { createClient } = require('@supabase/supabase-js');
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_ANON_KEY;
+
   if (supabaseUrl && supabaseKey) {
     supabase = createClient(supabaseUrl, supabaseKey);
+    console.log('✅ Supabase conectado');
   } else {
+    console.error('❌ Faltan SUPABASE_URL o SUPABASE_ANON_KEY en variables de entorno');
     useInMemory = true;
   }
 } catch (e) {
+  console.error('❌ Error al inicializar Supabase:', e.message);
   useInMemory = true;
 }
 
