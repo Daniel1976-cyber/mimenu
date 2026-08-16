@@ -7,7 +7,7 @@
     "start": "node api/server.js",
     "dev": "nodemon api/server.js",
     "server": "node api/server.js",
-    "build": "echo Build OK",
+    "build": "echo Build OK"
   },
   "keywords": [],
   "author": "",
