@@ -283,7 +283,7 @@
 
     async function checkServer() {
       try {
-        const r = await fetch(API_URL + '/stats');
+        const r = await fetch(API_URL + '/resumen')
         if (!r.ok) throw new Error();
         return true;
       } catch (e) {
@@ -294,7 +294,7 @@
 
     async function loadStats() {
       try {
-        const r = await fetch(`${API_URL}/stats`);
+        const r = await fetch(`${API_URL}/resumen`)
         const s = await r.json();
         document.getElementById('statTotal').textContent = s.total;
         document.getElementById('statActive').textContent = s.active;

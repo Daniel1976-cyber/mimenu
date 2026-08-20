@@ -163,7 +163,7 @@ if (!useInMemory) {
     }
   });
 
-  app.get('/api/stats', async (req, res) => {
+  app.get('/api/resumen', async (req, res) => {
     try {
       const { data, error } = await supabase.from('beverages').select('*');
       if (error) throw error;
@@ -209,7 +209,7 @@ if (!useInMemory) {
     res.json([...new Set(beverages.map(b => b.category))].sort());
   });
 
-  app.get('/api/stats', (req, res) => {
+  app.get('/api/resumen', (req, res) => {
     res.json({
       total: beverages.length,
       active: beverages.filter(b => b.active).length,
