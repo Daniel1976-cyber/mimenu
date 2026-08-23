@@ -9,7 +9,7 @@ Aplicación web para gestión de inventario de bebidas y menú público.
 - **Panel de administración**: Autenticación con roles (Maitré, Capitán)
 - **Menú público**: Vista filtrada de productos disponibles
 
-## Tecnologías
+## Tecnologías.
 
 - **Backend**: Node.js, Express 5.x
 - **Frontend**: HTML, CSS, JavaScript puro
