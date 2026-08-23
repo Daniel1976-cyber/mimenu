@@ -308,6 +308,7 @@
         const r = await fetch(`${API_URL}/categories`);
         const cats = await r.json();
         const sel = document.getElementById('filterCategory');
+        sel.innerHTML = '<option value="">Todas las categorias</option>';
         cats.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; sel.appendChild(o); });
       } catch (e) { console.error('Categories error:', e); }
     }
@@ -315,12 +316,13 @@
     let searchDebounce;
     async function performSearch() {
       const search = document.getElementById('searchInput').value.trim();
-      let url = `${API_URL}/beverages?`;
-      if (search) url += `search=${encodeURIComponent(search)}&`;
+      const params = new URLSearchParams();
+      if (search) params.append('search', search);
       const category = document.getElementById('filterCategory').value;
       const active = document.getElementById('filterStatus').value;
-      if (category) url += `category=${encodeURIComponent(category)}&`;
-      if (active) url += `active=${active}&`;
+      if (category) params.append('category', category);
+      if (active) params.append('active', active);
+      const url = `${API_URL}/beverages?${params.toString()}`;
       try {
         const r = await fetch(url);
         if (!r.ok) throw new Error();
@@ -374,10 +376,11 @@
       const search = document.getElementById('searchInput').value.trim();
       const category = document.getElementById('filterCategory').value;
       const active = document.getElementById('filterStatus').value;
-      let url = `${API_URL}/beverages?`;
-      if (search) url += `search=${encodeURIComponent(search)}&`;
-      if (category) url += `category=${encodeURIComponent(category)}&`;
-      if (active) url += `active=${active}&`;
+      const params = new URLSearchParams();
+      if (search) params.append('search', search);
+      if (category) params.append('category', category);
+      if (active) params.append('active', active);
+      const url = `${API_URL}/beverages?${params.toString()}`;
       try {
         const r = await fetch(url);
         if (!r.ok) throw new Error();

@@ -190,7 +190,7 @@ app.get('/api/categories', async (req, res) => {
   }
 });
 
-app.get('/api/stats', async (req, res) => {
+app.get('/api/resumen', async (req, res) => {
   try {
     const { data, error } = await supabase.from('beverages').select('*');
     if (error) throw error;
