@@ -25,7 +25,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 try {
   const { createClient } = require('@supabase/supabase-js');
-  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseUrl = process.env.https://lfpwqjvobymnjpzezfdu.supabase.coL;
   const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxmcHdxanZvYnltbmpwemV6ZmR1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYzMzA5NjAsImV4cCI6MjEwMTkwNjk2MH0.n8PFaA1Ez83f3K0GO7kr3OOaW3tNoA9V2Ev0yZPHkj8';
 
   if (supabaseUrl && supabaseKey) {
